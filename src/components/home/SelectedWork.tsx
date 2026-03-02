@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getFeaturedProjects, type Project } from "@/lib/projects";
 
-const projects = [
-  { title: "Brand Identity — Luxe Studio", category: "Branding", path: "/freelance" },
-  { title: "Mobile App — FitTrack", category: "Product Design", path: "/freelance" },
-  { title: "E-Commerce Platform", category: "Web Development", path: "/freelance" },
-  { title: "Task Management System", category: "Engineering", path: "/engineering" },
-  { title: "Social Media Dashboard", category: "Product Design", path: "/freelance" },
-  { title: "API Gateway Service", category: "Engineering", path: "/engineering" },
-];
+const categoryPathMap: Record<string, string> = {
+  "Graphic Design": "/freelance",
+  "Product Design": "/freelance",
+  "Web Development": "/freelance",
+  Engineering: "/engineering",
+};
 
 const SelectedWork = () => {
+  const projects = getFeaturedProjects().slice(0, 6);
+
   return (
     <section className="section-padding relative">
       <div className="absolute inset-0 gradient-mesh opacity-50" />
@@ -35,15 +36,19 @@ const SelectedWork = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, i) => (
             <motion.div
-              key={i}
+              key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <Link to={project.path} className="group block">
+              <Link to={categoryPathMap[project.category] ?? "/freelance"} className="group block">
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden glass-hover mb-4">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-500" />
+                  {project.imageUrl ? (
+                    <img src={project.imageUrl} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-500" />
+                  )}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 rounded-2xl bg-primary/10 group-hover:bg-primary/20 transition-all duration-500 flex items-center justify-center">
                       <ArrowUpRight size={20} className="text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
