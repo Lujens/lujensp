@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
@@ -19,12 +18,14 @@ const FloatingCTA = () => {
             <p className="text-sm font-medium text-foreground mb-3">
               Ready to build something amazing?
             </p>
-            <Link
-              to="/contact"
+            <a
+              href="https://wa.me/15619783888?text=Hi%20Lujens!%20I'm%20interested%20in%20working%20together."
+              target="_blank"
+              rel="noopener noreferrer"
               className="block text-center text-sm font-medium px-5 py-2.5 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
-              Work With Me
-            </Link>
+              Message on WhatsApp
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
