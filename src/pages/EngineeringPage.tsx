@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Download } from "lucide-react";
 import { getProjectsByCategory, type Project } from "@/lib/projects";
+import { useEffect } from "react";
 
 const techStack = [
   "React", "TypeScript", "Node.js", "Python", "SQL", "Firebase", "REST APIs", "Git", "Tailwind CSS", "Next.js",
@@ -8,6 +9,13 @@ const techStack = [
 
 const EngineeringPage = () => {
   const engineeringProjects = getProjectsByCategory("Engineering");
+
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+    return () => {
+      document.documentElement.classList.remove("dark");
+    };
+  }, []);
 
   return (
     <div className="pt-24">
