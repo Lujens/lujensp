@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Briefcase } from "lucide-react";
+import portraitImg from "@/assets/lujens-pierre.jpg";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center gradient-mesh overflow-hidden">
       {/* Ambient glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-glow-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/10 rounded-full blur-[100px] animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-glow-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/5 rounded-full blur-[100px] animate-glow-pulse" style={{ animationDelay: "1.5s" }} />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -68,34 +69,32 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right - Animated project cards */}
+          {/* Right - Portrait */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:block relative"
+            className="hidden lg:flex justify-center"
           >
-            <div className="relative w-full h-[500px]">
-              {[
-                { title: "Brand Identity", color: "from-primary/20 to-accent/20", rotate: -6, y: 0 },
-                { title: "Mobile App", color: "from-accent/20 to-primary/20", rotate: 3, y: 30 },
-                { title: "Web Platform", color: "from-primary/30 to-accent/10", rotate: -2, y: 60 },
-              ].map((card, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    y: [card.y, card.y - 10, card.y],
-                    rotate: [card.rotate, card.rotate + 1, card.rotate],
-                  }}
-                  transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
-                  className={`absolute top-0 left-1/2 -translate-x-1/2 w-72 h-48 rounded-2xl bg-gradient-to-br ${card.color} glass border border-border/50 p-6 flex flex-col justify-end`}
-                  style={{ zIndex: 3 - i }}
-                >
-                  <div className="w-8 h-1 rounded-full bg-primary/60 mb-3" />
-                  <p className="text-sm font-medium text-foreground">{card.title}</p>
-                  <p className="text-xs text-muted-foreground">Case Study</p>
-                </motion.div>
-              ))}
+            <div className="relative">
+              {/* Glow behind portrait */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
+              <div className="relative w-80 h-96 rounded-3xl overflow-hidden border-2 border-border/50 shadow-2xl">
+                <img
+                  src={portraitImg}
+                  alt="Lujens Pierre"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              {/* Floating badge */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 -left-6 glass rounded-2xl px-5 py-3 shadow-lg"
+              >
+                <p className="text-xs font-medium text-muted-foreground">Creative Technologist</p>
+                <p className="text-sm font-semibold text-foreground">Lujens Pierre</p>
+              </motion.div>
             </div>
           </motion.div>
         </div>

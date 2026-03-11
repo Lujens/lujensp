@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import portraitImg from "@/assets/lujens-pierre.jpg";
 
 const sections = [
   {
@@ -54,17 +55,13 @@ const AboutPage = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="aspect-[3/4] rounded-3xl glass overflow-hidden relative"
+            className="aspect-[3/4] rounded-3xl overflow-hidden relative shadow-2xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-24 h-24 rounded-full bg-primary/20 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-3xl font-display font-bold text-primary">LP</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Portrait placeholder</p>
-              </div>
-            </div>
+            <img
+              src={portraitImg}
+              alt="Lujens Pierre"
+              className="w-full h-full object-cover object-top"
+            />
           </motion.div>
 
           <motion.div
